@@ -18,6 +18,10 @@
 		F1600BD61DD9A26F00F0F650 /* SSCalendarMacros.m in Sources */ = {isa = PBXBuildFile; fileRef = F1600BD51DD9A26F00F0F650 /* SSCalendarMacros.m */; };
 		F1600BD91DD9A29E00F0F650 /* SSCalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1600BD81DD9A29E00F0F650 /* SSCalendarViewController.m */; };
 		F1600BDC1DD9A4A000F0F650 /* SSChineseCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1600BDB1DD9A4A000F0F650 /* SSChineseCalendarManager.m */; };
+		F1EFA1BB1DE6C07B00E133FB /* SSCalendarCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA1BA1DE6C07B00E133FB /* SSCalendarCollectionViewCell.m */; };
+		F1EFA1BE1DE6C0CC00E133FB /* SSCalendarPopView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA1BD1DE6C0CC00E133FB /* SSCalendarPopView.m */; };
+		F1EFA1C11DE6CC3400E133FB /* SSCalendarCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA1C01DE6CC3400E133FB /* SSCalendarCollectionReusableView.m */; };
+		F1EFA1C41DE6D88500E133FB /* SSCalendarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EFA1C31DE6D88500E133FB /* SSCalendarManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,14 @@
 		F1600BD81DD9A29E00F0F650 /* SSCalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCalendarViewController.m; sourceTree = "<group>"; };
 		F1600BDA1DD9A4A000F0F650 /* SSChineseCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSChineseCalendarManager.h; sourceTree = "<group>"; };
 		F1600BDB1DD9A4A000F0F650 /* SSChineseCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSChineseCalendarManager.m; sourceTree = "<group>"; };
+		F1EFA1B91DE6C07B00E133FB /* SSCalendarCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCalendarCollectionViewCell.h; sourceTree = "<group>"; };
+		F1EFA1BA1DE6C07B00E133FB /* SSCalendarCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCalendarCollectionViewCell.m; sourceTree = "<group>"; };
+		F1EFA1BC1DE6C0CC00E133FB /* SSCalendarPopView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCalendarPopView.h; sourceTree = "<group>"; };
+		F1EFA1BD1DE6C0CC00E133FB /* SSCalendarPopView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCalendarPopView.m; sourceTree = "<group>"; };
+		F1EFA1BF1DE6CC3400E133FB /* SSCalendarCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCalendarCollectionReusableView.h; sourceTree = "<group>"; };
+		F1EFA1C01DE6CC3400E133FB /* SSCalendarCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCalendarCollectionReusableView.m; sourceTree = "<group>"; };
+		F1EFA1C21DE6D88500E133FB /* SSCalendarManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSCalendarManager.h; sourceTree = "<group>"; };
+		F1EFA1C31DE6D88500E133FB /* SSCalendarManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSCalendarManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,14 @@
 				F1600BD81DD9A29E00F0F650 /* SSCalendarViewController.m */,
 				F1600BDA1DD9A4A000F0F650 /* SSChineseCalendarManager.h */,
 				F1600BDB1DD9A4A000F0F650 /* SSChineseCalendarManager.m */,
+				F1EFA1B91DE6C07B00E133FB /* SSCalendarCollectionViewCell.h */,
+				F1EFA1BA1DE6C07B00E133FB /* SSCalendarCollectionViewCell.m */,
+				F1EFA1BC1DE6C0CC00E133FB /* SSCalendarPopView.h */,
+				F1EFA1BD1DE6C0CC00E133FB /* SSCalendarPopView.m */,
+				F1EFA1BF1DE6CC3400E133FB /* SSCalendarCollectionReusableView.h */,
+				F1EFA1C01DE6CC3400E133FB /* SSCalendarCollectionReusableView.m */,
+				F1EFA1C21DE6D88500E133FB /* SSCalendarManager.h */,
+				F1EFA1C31DE6D88500E133FB /* SSCalendarManager.m */,
 			);
 			path = SSCalendar;
 			sourceTree = "<group>";
@@ -295,12 +315,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1EFA1BE1DE6C0CC00E133FB /* SSCalendarPopView.m in Sources */,
 				F1600BA91DD9A16200F0F650 /* ViewController.m in Sources */,
 				F1600BA61DD9A16200F0F650 /* AppDelegate.m in Sources */,
 				F1600BD61DD9A26F00F0F650 /* SSCalendarMacros.m in Sources */,
+				F1EFA1C11DE6CC3400E133FB /* SSCalendarCollectionReusableView.m in Sources */,
 				F1600BDC1DD9A4A000F0F650 /* SSChineseCalendarManager.m in Sources */,
 				F1600BA31DD9A16200F0F650 /* main.m in Sources */,
 				F1600BD91DD9A29E00F0F650 /* SSCalendarViewController.m in Sources */,
+				F1EFA1BB1DE6C07B00E133FB /* SSCalendarCollectionViewCell.m in Sources */,
+				F1EFA1C41DE6D88500E133FB /* SSCalendarManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +556,7 @@
 				F1600BCD1DD9A16200F0F650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1600BCE1DD9A16200F0F650 /* Build configuration list for PBXNativeTarget "SSCalendarDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -540,6 +565,7 @@
 				F1600BD01DD9A16200F0F650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1600BD11DD9A16200F0F650 /* Build configuration list for PBXNativeTarget "SSCalendarDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -548,6 +574,7 @@
 				F1600BD31DD9A16200F0F650 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
