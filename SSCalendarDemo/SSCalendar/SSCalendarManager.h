@@ -11,7 +11,12 @@
 
 @interface SSCalendarManager : NSObject
 
-//- (instancetype)initWithShowChineseHoliday:(BOOL)showChineseHoliday showChineseCalendar:(BOOL)showChineseCalendar startDate:()
+- (instancetype)initWithShowChineseHoliday:(BOOL)showChineseHoliday showChineseCalendar:(BOOL)showChineseCalendar startDate:(NSInteger)startDate;
+
+//获取数据源
+- (NSArray *)getCalendarDataSourceWithLimitMonth:(NSInteger)limitMonth type:(SSCalendarViewControllerType)type;
+
+@property (nonatomic, strong) NSIndexPath *startIndexPath;
 
 
 @end

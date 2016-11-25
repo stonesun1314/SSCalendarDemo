@@ -31,7 +31,14 @@
     self = [super init];
     if(self)
     {
+        _afterTodayCanTouch = YES;
+        _beforeTodayCanTouch = YES;
         _dataArray = [[NSMutableArray alloc]init];
+        _showChineseCalendar = NO;
+        _showChineseHoliday = NO;
+        _showHolidayDifferentColor = NO;
+        _showAlertView = NO;
+        _startDate = 0;
 
     }
     return self;
@@ -49,15 +56,23 @@
 - (void)initDataSource
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        /*
-        SSCalendarManager *manager = [[SSCalendarManager alloc]initWithShowChineseHoliday:_showChineseHoliday showChineseCalendar:_showChineseCalendar startDate:_startDate];
-        NSArray *tempDataArray = [manager getCalendarDataSoruceWithLimitMonth:_limitMonth type:_type];
+    
+        SSCalendarManager *manager = [[SSCalendarManager alloc]initWithShowChineseHoliday:_showChineseHoliday showChineseCalendar:_showChineseCalendar startDate:_startDate];//getCalendarDataSourceWithLimitMonth
+        NSArray *tempDataArray = [manager getCalendarDataSourceWithLimitMonth:_limitMonth type:_type];
         dispatch_async(dispatch_get_main_queue(), ^{
             [_dataArray addObjectsFromArray:tempDataArray];
             [self showCollectionViewWithStartIndexPath:manager.startIndexPath];
         });
-         */
+         
     });
+}
+
+- (void)addWeekView{
+    
+}
+
+- (void)showCollectionViewWithStartIndexPath:(NSIndexPath *)startIndexPath{
+
 }
 
 - (void)createUI{
