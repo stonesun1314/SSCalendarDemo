@@ -11,4 +11,9 @@
 
 @interface SSChineseCalendarManager : NSObject
 
+- (void)getChineseCalendarWithDate:(NSDate *)date calendarItem:(SSCalendarModel *)calendarItem;
+
+- (BOOL)isQingMingholidayWithYear:(NSInteger)year month:(NSInteger)month day:(NSInteger)day;
+
+
 @end

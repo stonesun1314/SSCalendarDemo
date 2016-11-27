@@ -1,10 +1,13 @@
 //
-//  SSCalendarMacros.m
+//  SSCalendarMacros.h
 //  SSCalendarDemo
 //
-//  Created by LazyCat-Stone on 2016/11/14.
+//  Created by LazyCat-Stone on 2016/11/27.
 //  Copyright © 2016年 LazyCat. All rights reserved.
 //
+
+
+
 
 #define SS_SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
 #define SS_SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
@@ -14,16 +17,18 @@
 
 
 /**
-    定义属性
+ 定义属性
  */
+//主题背景色
+#define SS_MainBackgroundColor  SS_UTILS_COLORRGB(247,247,247)
 // DateLabel默认文字颜色
 #define SS_TextColor [UIColor blackColor]
 // DateLabel选中时的背景色
-#define SS_SelectBackgroundColor MSS_UTILS_COLORRGB(29, 154, 72)
+#define SS_SelectBackgroundColor SS_UTILS_COLORRGB(29, 154, 72)
 // DateLabel选中后文字颜色
 #define SS_SelectTextColor [UIColor whiteColor]
 // SubLabel文字颜色
-#define SS_SelectSubLabelTextColor MSS_UTILS_COLORRGB(29, 154, 180);
+#define SS_SelectSubLabelTextColor SS_UTILS_COLORRGB(29, 154, 180);
 // SubLabel选中开始文字
 #define SS_SelectBeginText @"开始"
 // SubLabel选中结束文字
@@ -33,16 +38,19 @@
 // 周末颜色
 #define SS_WeekEndTextColor [UIColor redColor]
 // 不可点击文字颜色
-#define SS_TouchUnableTextColor MSS_UTILS_COLORRGB(150, 150, 150)
+#define SS_TouchUnableTextColor SS_UTILS_COLORRGB(150, 150, 150)
 // 周视图高度
 #define SS_WeekViewHeight 40
 // headerView线颜色
 #define SS_HeaderViewLineColor [UIColor lightGrayColor]
 // headerView文字颜色
-#define SS_HeaderViewTextColor [UIColor blackColor]
+#define SS_HeaderViewTextColor SS_UTILS_COLORRGB(66, 66, 66)
 // headerView高度
 #define SS_HeaderViewHeight 50
 // 弹出层文字颜色
 #define SS_CalendarPopViewTextColor [UIColor whiteColor]
 // 弹出层背景颜色
 #define SS_CalendarPopViewBackgroundColor [UIColor blackColor]
+
+// 分割线颜色
+#define SS_CalendarSeparatorLineColor     SS_UTILS_COLORRGB(219,219,219)

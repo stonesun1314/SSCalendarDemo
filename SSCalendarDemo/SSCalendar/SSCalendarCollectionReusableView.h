@@ -10,4 +10,6 @@
 
 @interface SSCalendarCollectionReusableView : UICollectionReusableView
 
+@property (nonatomic,strong)UILabel *headerLabel;
+
 @end

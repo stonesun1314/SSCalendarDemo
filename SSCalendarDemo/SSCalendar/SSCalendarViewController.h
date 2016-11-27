@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SSCalendarViewControllerDelegate <NSObject>
+- (void)calendarViewConfirmClickWithStartDate:(NSInteger)startDate endDate:(NSInteger)endDate;
+@end
+
 typedef NS_ENUM(NSInteger, SSCalendarViewControllerType)
 {
     SSCalendarViewControllerLastType = 0,   // 只显示当前月之前
@@ -16,7 +20,7 @@ typedef NS_ENUM(NSInteger, SSCalendarViewControllerType)
 };
 
 @interface SSCalendarViewController : UIViewController
-
+@property (nonatomic,weak)id<SSCalendarViewControllerDelegate> delegate;
 @property (nonatomic, assign) NSInteger startDate;      //选中开始时间
 @property (nonatomic, assign) NSInteger endDate;        //选中结束时间
 

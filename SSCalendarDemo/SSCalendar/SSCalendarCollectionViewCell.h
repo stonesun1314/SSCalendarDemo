@@ -13,5 +13,6 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UILabel *dateLabel;
 @property (nonatomic, strong) UILabel *subLabel;
+@property (nonatomic, assign) BOOL hiddenSeparatorLine;
 
 @end

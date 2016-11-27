@@ -31,6 +31,7 @@
         _greCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         _todayDate = [NSDate date];
         _todayCompontents = [self dateToComponents:_todayDate];
+        _dateFormatter = [[NSDateFormatter alloc]init];
         _chineseCalendarManager = [[SSChineseCalendarManager alloc]init];
         _showChineseHoliday = showChineseHoliday;
         _showChineseCalendar = showChineseCalendar;
@@ -134,7 +135,7 @@
         }
     }
     
-    return nil;
+    return resultArray;
 }
 
 // 一个月有多少天
@@ -147,7 +148,8 @@
 - (NSUInteger)startDayOfWeek:(NSDate *)date{
     NSDate *startDate = nil;
     BOOL result = [_greCalendar rangeOfUnit:NSMonthCalendarUnit startDate:&startDate interval:NULL forDate:date];
-    if (result) {
+    if(result)
+    {
         return [_greCalendar ordinalityOfUnit:NSDayCalendarUnit inUnit:NSWeekCalendarUnit forDate:startDate];
     }
     return 0;
@@ -160,9 +162,100 @@
 }
 
 #pragma mark 农历和节假日  待定
-- (void)setChineseCalendarAndHolidayWithDate:(NSDateComponents *)components date:(NSDate *)date calendarItem:(SSCalendarModel *)calendarItem{
+#pragma mark 农历和节假日
+- (void)setChineseCalendarAndHolidayWithDate:(NSDateComponents *)components date:(NSDate *)date calendarItem:(SSCalendarModel *)calendarItem
+{
+    if (components.year == _todayCompontents.year && components.month == _todayCompontents.month && components.day == _todayCompontents.day)
+    {
+        calendarItem.type = SSCalendarTodayType;
+        calendarItem.holiday = @"今天";
+    }
+    else
+    {
+        if([date compare:_todayDate] == 1)
+        {
+            calendarItem.type = SSCalendarNextType;
+        }
+        else
+        {
+            calendarItem.type = SSCalendarLastType;
+        }
+    }
+    //    if (components.year == _todayCompontents.year && components.month == _todayCompontents.month && components.day == _todayCompontents.day - 1)
+    //    {
+    //        calendarItem.holiday = @"昨天";
+    //    }
+    //    else if (components.year == _todayCompontents.year && components.month == _todayCompontents.month && components.day == _todayCompontents.day + 1)
+    //    {
+    //        calendarItem.holiday = @"明天";
+    //    }
     
+    if(components.month == 1 && components.day == 1)
+    {
+        calendarItem.holiday = @"元旦";
+    }
+    else if(components.month == 2 && components.day == 14)
+    {
+        calendarItem.holiday = @"情人节";
+    }
+    else if(components.month == 3 && components.day == 8)
+    {
+        calendarItem.holiday = @"妇女节";
+    }
+    else if(components.month == 4 && components.day == 1)
+    {
+        calendarItem.holiday = @"愚人节";
+    }
+    else if(components.month == 4 && (components.day == 4 || components.day == 5 || components.day == 6))
+    {
+        if([_chineseCalendarManager isQingMingholidayWithYear:components.year month:components.month day:components.day])
+        {
+            calendarItem.holiday = @"清明节";
+        }
+    }
+    else if(components.month == 5 && components.day == 1)
+    {
+        calendarItem.holiday = @"劳动节";
+    }
+    else if(components.month == 5 && components.day == 4)
+    {
+        calendarItem.holiday = @"青年节";
+    }
+    else if(components.month == 6 && components.day == 1)
+    {
+        calendarItem.holiday = @"儿童节";
+    }
+    else if(components.month == 8 && components.day == 1)
+    {
+        calendarItem.holiday = @"建军节";
+    }
+    else if(components.month == 9 && components.day == 10)
+    {
+        calendarItem.holiday = @"教师节";
+    }
+    else if(components.month == 10 && components.day == 1)
+    {
+        calendarItem.holiday = @"国庆节";
+    }
+    else if(components.month == 1 && components.day == 1)
+    {
+        calendarItem.holiday = @"元旦";
+    }
+    else if(components.month == 11 && components.day == 11)
+    {
+        calendarItem.holiday = @"光棍节";
+    }
+    else if(components.month == 12 && components.day == 25)
+    {
+        calendarItem.holiday = @"圣诞节";
+    }
+    // 计算农历耗性能
+    if(_showChineseCalendar || _showChineseHoliday)
+    {
+        [_chineseCalendarManager getChineseCalendarWithDate:date calendarItem:calendarItem];
+    }
 }
+
 
 #pragma mark NSDate和NSCompontents转换
 - (NSDateComponents *)dateToComponents:(NSDate *)date
