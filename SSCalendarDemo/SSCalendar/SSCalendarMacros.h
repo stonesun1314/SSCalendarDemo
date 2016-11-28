@@ -41,7 +41,7 @@
 // 不可点击文字颜色
 #define SS_TouchUnableTextColor SS_UTILS_COLORRGB(150, 150, 150)
 // 周视图高度
-#define SS_WeekViewHeight 40
+#define SS_WeekViewHeight 64
 // headerView线颜色
 #define SS_HeaderViewLineColor [UIColor lightGrayColor]
 // headerView文字颜色
@@ -57,5 +57,5 @@
 #define SS_CalendarSeparatorLineColor     SS_UTILS_COLORRGB(219,219,219)
 
 //入住、离店日期选中背景色
-#define SS_CalendarSelectedItemBackgroundColor      SS_UIColorWithHEXandAlpha(0xF7F7F7,1.0)
+#define SS_CalendarSelectedItemBackgroundColor      SS_UIColorWithHEXandAlpha(0xFC5D7B,1.0)
 #define SS_CalendarBetweenSelectedItemBackgroundColor    SS_UIColorWithHEXandAlpha(0xFC5D7B,0.5)    //提示内容高亮状态(收藏、删除等警示性内容)

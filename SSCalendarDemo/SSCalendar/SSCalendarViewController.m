@@ -22,6 +22,7 @@
 }
 
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) SSCalendarPopView *popView;
 
@@ -38,7 +39,7 @@
         _afterTodayCanTouch = YES;
         _beforeTodayCanTouch = YES;
         _dataArray = [[NSMutableArray alloc]init];
-        _showChineseCalendar = YES;
+        _showChineseCalendar = NO;
         _showChineseHoliday = NO;
         _showHolidayDifferentColor = NO;
         _showAlertView = NO;
@@ -82,16 +83,17 @@
 
 - (void)addWeekView{
     
-    UIView *weekView = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SS_SCREEN_WIDTH, SS_WeekViewHeight)];
+    UIView *weekView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SS_SCREEN_WIDTH, SS_WeekViewHeight)];
     weekView.backgroundColor = SS_SelectBackgroundColor;
     [self.view addSubview:weekView];
     
     NSArray *weekArray = @[@"日",@"一",@"二",@"三",@"四",@"五",@"六"];
     int i = 0;
     NSInteger width = itemWidth;
+    CGFloat left = _flowLayout.sectionInset.left;
     for(i = 0; i < 7;i++)
     {
-        UILabel *weekLabel = [[UILabel alloc]initWithFrame:CGRectMake(i * width, 0, width, SS_WeekViewHeight)];
+        UILabel *weekLabel = [[UILabel alloc]initWithFrame:CGRectMake(left + i * width, 0, width, SS_WeekViewHeight)];
         weekLabel.backgroundColor = [UIColor clearColor];
         weekLabel.text = weekArray[i];
         weekLabel.font = [UIFont boldSystemFontOfSize:16.0f];
@@ -121,14 +123,14 @@
     NSInteger height = itemHeight;
     
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
-    flowLayout.itemSize = CGSizeMake(width, height);
-    flowLayout.headerReferenceSize = CGSizeMake(SS_SCREEN_WIDTH, SS_HeaderViewHeight);
-    flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
+    _flowLayout = [[UICollectionViewFlowLayout alloc]init];
+    _flowLayout.itemSize = CGSizeMake(width, height);
+    _flowLayout.headerReferenceSize = CGSizeMake(SS_SCREEN_WIDTH, SS_HeaderViewHeight);
+    _flowLayout.sectionInset = UIEdgeInsetsMake(0, 10, 0, 10);
+    _flowLayout.minimumInteritemSpacing = 0;
+    _flowLayout.minimumLineSpacing = 0;
     
-    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64 + SS_WeekViewHeight, self.view.bounds.size.width, SS_SCREEN_HEIGHT - 64 - SS_WeekViewHeight) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, self.view.bounds.size.width, SS_SCREEN_HEIGHT - 64) collectionViewLayout:_flowLayout];
     _collectionView.delegate = self;
     _collectionView.dataSource = self;
     _collectionView.backgroundColor = SS_MainBackgroundColor;
@@ -203,14 +205,36 @@
                 cell.dateLabel.textColor = SS_WeekEndTextColor;
                 cell.subLabel.textColor = SS_WeekEndTextColor;
             }
-            if(calendarItem.holiday.length > 0)
-            {
-                cell.dateLabel.text = calendarItem.holiday;
-                if(_showHolidayDifferentColor)
+            if (_showChineseHoliday) {
+                if(calendarItem.holiday.length > 0)
                 {
-                    cell.dateLabel.textColor = SS_HolidayTextColor;
-                    cell.subLabel.textColor = SS_HolidayTextColor;
+                    cell.dateLabel.text = calendarItem.holiday;
+                    if(_showHolidayDifferentColor)
+                    {
+                        cell.dateLabel.textColor = SS_HolidayTextColor;
+                        cell.subLabel.textColor = SS_HolidayTextColor;
+                    }
                 }
+            }
+
+        }
+        
+        if(!_afterTodayCanTouch)
+        {
+            if(calendarItem.type == SSCalendarNextType)
+            {
+                cell.dateLabel.textColor = SS_TouchUnableTextColor;
+                cell.subLabel.textColor = SS_TouchUnableTextColor;
+                cell.userInteractionEnabled = NO;
+            }
+        }
+        if(!_beforeTodayCanTouch)
+        {
+            if(calendarItem.type == SSCalendarLastType)
+            {
+                cell.dateLabel.textColor = SS_TouchUnableTextColor;
+                cell.subLabel.textColor = SS_TouchUnableTextColor;
+                cell.userInteractionEnabled = NO;
             }
         }
     }
@@ -232,7 +256,40 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    //SSCalendarHeaderModel *headerItem =
+    SSCalendarHeaderModel *headerItem = _dataArray[indexPath.section];
+    SSCalendarModel *calendaItem = headerItem.calendarItemArray[indexPath.row];
+    // 当开始日期为空时
+    if(_startDate == 0)
+    {
+        _startDate = calendaItem.dateInterval;
+        //[self showPopViewWithIndexPath:indexPath];
+    }
+    // 当开始日期和结束日期同时存在时(点击为重新选时间段)
+    else if(_startDate > 0 && _endDate > 0)
+    {
+        _startDate = calendaItem.dateInterval;
+        _endDate = 0;
+        //[self showPopViewWithIndexPath:indexPath];
+    }
+    else
+    {
+        // 判断第二个选择日期是否比现在开始日期大
+        if(_startDate < calendaItem.dateInterval)
+        {
+            _endDate = calendaItem.dateInterval;
+            if([_delegate respondsToSelector:@selector(calendarViewConfirmClickWithStartDate:endDate:)])
+            {
+                [_delegate calendarViewConfirmClickWithStartDate:_startDate endDate:_endDate];
+            }
+            //[self dismissViewControllerAnimated:YES completion:nil];
+        }
+        else
+        {
+            _startDate = calendaItem.dateInterval;
+            //[self showPopViewWithIndexPath:indexPath];
+        }
+    }
+    [_collectionView reloadData];
 }
 
 
