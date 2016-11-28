@@ -67,4 +67,26 @@
     _bottomLine.hidden = hiddenSeparatorLine;
 }
 
+- (void)setSelectedState:(SSCalendarItemState)selectedState{
+    _selectedState = selectedState;
+    switch (_selectedState) {
+        case SSCalendarItemStateSelected:{
+            self.backgroundColor = SS_CalendarSelectedItemBackgroundColor;
+        }
+            break;
+        case SSCalendarViewStateBetweenSelected:
+        {
+            self.backgroundColor = SS_CalendarBetweenSelectedItemBackgroundColor;
+        }
+            break;
+        case SSCalendarItemStateDefault:
+        default:
+        {
+            self.backgroundColor = [UIColor whiteColor];
+        }
+            break;
+    }
+    
+}
+
 @end

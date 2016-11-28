@@ -43,6 +43,7 @@
         _showHolidayDifferentColor = NO;
         _showAlertView = NO;
         _startDate = 0;
+        _endDate = 0;
         
         itemWidth = (SS_SCREEN_WIDTH - 20)/7;
         itemHeight = itemWidth;
@@ -172,6 +173,45 @@
         if(_showChineseCalendar)
         {
             cell.subLabel.text = calendarItem.chineseCalendar;
+        }
+        // 开始日期
+        if(calendarItem.dateInterval == _startDate)
+        {
+            cell.selectedState = SSCalendarItemStateSelected;
+            cell.dateLabel.textColor = SS_SelectTextColor;
+            cell.subLabel.text = SS_SelectBeginText;
+            
+        }
+        // 结束日期
+        else if (calendarItem.dateInterval == _endDate)
+        {
+            cell.selectedState = SSCalendarItemStateSelected;
+            cell.dateLabel.textColor = SS_SelectTextColor;
+            cell.subLabel.text = SS_SelectEndText;
+        }
+        
+        // 开始和结束之间的日期
+        else if(calendarItem.dateInterval > _startDate && calendarItem.dateInterval < _endDate)
+        {
+            cell.selectedState = SSCalendarViewStateBetweenSelected;
+            cell.dateLabel.textColor = SS_SelectTextColor;
+        }
+        else
+        {
+            if(calendarItem.week == 0 || calendarItem.week == 6)
+            {
+                cell.dateLabel.textColor = SS_WeekEndTextColor;
+                cell.subLabel.textColor = SS_WeekEndTextColor;
+            }
+            if(calendarItem.holiday.length > 0)
+            {
+                cell.dateLabel.text = calendarItem.holiday;
+                if(_showHolidayDifferentColor)
+                {
+                    cell.dateLabel.textColor = SS_HolidayTextColor;
+                    cell.subLabel.textColor = SS_HolidayTextColor;
+                }
+            }
         }
     }
     return cell;
