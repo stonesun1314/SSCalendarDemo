@@ -158,6 +158,7 @@
         SSCalendarModel *calendarItem = headerItem.calendarItemArray[indexPath.row];
         cell.dateLabel.text = @"";
         cell.subLabel.text = @"";
+        cell.selectedState = SSCalendarItemStateDefault;
         if(calendarItem.day > 0)
         {
             cell.dateLabel.text = [NSString stringWithFormat:@"%ld",(long)calendarItem.day];
@@ -179,30 +180,27 @@
         if(calendarItem.dateInterval == _startDate)
         {
             cell.selectedState = SSCalendarItemStateInSelected;
-            cell.dateLabel.textColor = SS_SelectTextColor;
-            //cell.subLabel.text = SS_SelectBeginText;
             
         }
-        // 结束日期
-        else if (calendarItem.dateInterval == _endDate)
-        {
-            cell.selectedState = SSCalendarItemStateLeaveSelected;
-            cell.dateLabel.textColor = SS_SelectTextColor;
-            cell.subLabel.text = @"";
-        }
+
         
         // 开始和结束之间的日期
         else if(calendarItem.dateInterval > _startDate && calendarItem.dateInterval < _endDate)
         {
             cell.selectedState = SSCalendarViewStateBetweenSelected;
-            cell.dateLabel.textColor = SS_SelectTextColor;
+        }        // 结束日期
+        else if (calendarItem.dateInterval == _endDate)
+        {
+            cell.selectedState = SSCalendarItemStateLeaveSelected;
+            cell.subLabel.text = @"";
         }
         else
         {
             if(calendarItem.week == 0 || calendarItem.week == 6)
             {
-                cell.dateLabel.textColor = SS_WeekEndTextColor;
-                cell.subLabel.textColor = SS_WeekEndTextColor;
+                //周末的颜色
+                //cell.dateLabel.textColor = SS_WeekEndTextColor;
+                //cell.subLabel.textColor = SS_WeekEndTextColor;
             }
             if (_showChineseHoliday) {
                 if(calendarItem.holiday.length > 0)
@@ -210,8 +208,8 @@
                     cell.dateLabel.text = calendarItem.holiday;
                     if(_showHolidayDifferentColor)
                     {
-                        cell.dateLabel.textColor = SS_HolidayTextColor;
-                        cell.subLabel.textColor = SS_HolidayTextColor;
+                        //cell.dateLabel.textColor = SS_HolidayTextColor;
+                        //cell.subLabel.textColor = SS_HolidayTextColor;
                     }
                 }
             }
@@ -219,9 +217,10 @@
         }
         
         if (_showPrice) {
-            if (calendarItem.price.length > 0) {
+            if (/*calendarItem.price.length > 0 &&*/ calendarItem.type == SSCalendarNextType && calendarItem.dateInterval != _endDate) {
                 cell.subLabel.text = @"￥223";
-                cell.subLabel.textColor = SS_SelectStateColor;
+            }else{
+                cell.subLabel.text = @"";
             }
         }
         

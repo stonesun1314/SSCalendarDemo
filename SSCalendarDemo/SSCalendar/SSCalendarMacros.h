@@ -29,7 +29,7 @@
 // DateLabel选中后文字颜色
 #define SS_SelectTextColor [UIColor whiteColor]
 // SubLabel文字颜色
-#define SS_SubLabelTextColor  SS_CalendarSelectedItemBackgroundColor
+#define SS_SubLabelTextColor  SS_UIColorWithHEXandAlpha(0xFC5D7B,1.0)
 // SubLabel选中时文字颜色
 #define SS_SelectSubLabelTextColor  [UIColor whiteColor]
 

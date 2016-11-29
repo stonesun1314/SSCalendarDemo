@@ -161,7 +161,6 @@
     return (long)[date timeIntervalSince1970];
 }
 
-#pragma mark 农历和节假日  待定
 #pragma mark 农历和节假日
 - (void)setChineseCalendarAndHolidayWithDate:(NSDateComponents *)components date:(NSDate *)date calendarItem:(SSCalendarModel *)calendarItem
 {

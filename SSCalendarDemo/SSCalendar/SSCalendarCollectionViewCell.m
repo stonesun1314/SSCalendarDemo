@@ -75,11 +75,14 @@
 
 - (void)setSelectedState:(SSCalendarItemState)selectedState{
     _selectedState = selectedState;
+    self.dateLabel.textColor = [UIColor whiteColor];
     self.stateLabel.text = @"";
+    self.subLabel.text = @"￥223";
     switch (_selectedState) {
         case SSCalendarItemStateInSelected:{
             self.backgroundColor = SS_CalendarSelectedItemBackgroundColor;
             self.stateLabel.text = @"入住";
+            self.subLabel.textColor = [UIColor whiteColor];
         }
             break;
         case SSCalendarItemStateLeaveSelected:
@@ -87,19 +90,23 @@
             self.backgroundColor = SS_CalendarSelectedItemBackgroundColor;
             self.subLabel.text = @"";
             self.stateLabel.text = @"离店";
+            self.subLabel.textColor = [UIColor whiteColor];
         }
             break;
         case SSCalendarViewStateBetweenSelected:
         {
             self.backgroundColor = SS_CalendarBetweenSelectedItemBackgroundColor;
             self.stateLabel.text = @"";
+            self.subLabel.textColor = [UIColor whiteColor];
         }
             break;
         case SSCalendarItemStateDefault:
         default:
         {
             self.backgroundColor = [UIColor whiteColor];
+            self.dateLabel.textColor = SS_TextColor;
             self.stateLabel.text = @"";
+            self.subLabel.textColor = SS_CalendarSelectedItemBackgroundColor;
             
         }
             break;
