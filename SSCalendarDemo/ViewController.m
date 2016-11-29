@@ -60,6 +60,7 @@
     cvc.showChineseHoliday = NO;// 是否展示农历节日
     cvc.showChineseCalendar = NO;// 是否展示农历
     cvc.showHolidayDifferentColor = NO;// 节假日是否显示不同的颜色
+    cvc.showPrice = YES;
     cvc.showAlertView = YES;// 是否显示提示弹窗
     cvc.delegate = self;
     [self presentViewController:cvc animated:YES completion:nil];

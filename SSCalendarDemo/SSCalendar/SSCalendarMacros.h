@@ -23,23 +23,28 @@
 //主题背景色
 #define SS_MainBackgroundColor  SS_UTILS_COLORRGB(247,247,247)
 // DateLabel默认文字颜色
-#define SS_TextColor [UIColor blackColor]
+#define SS_TextColor SS_UIColorWithHEXandAlpha(0x424242,1.0)
 // DateLabel选中时的背景色
-#define SS_SelectBackgroundColor SS_UTILS_COLORRGB(29, 154, 72)
+#define SS_SelectBackgroundColor SS_CalendarSelectedItemBackgroundColor
 // DateLabel选中后文字颜色
 #define SS_SelectTextColor [UIColor whiteColor]
 // SubLabel文字颜色
-#define SS_SelectSubLabelTextColor SS_UTILS_COLORRGB(29, 154, 180);
+#define SS_SubLabelTextColor  SS_CalendarSelectedItemBackgroundColor
+// SubLabel选中时文字颜色
+#define SS_SelectSubLabelTextColor  [UIColor whiteColor]
+
 // SubLabel选中开始文字
-#define SS_SelectBeginText @"开始"
+#define SS_SelectStateColor     [UIColor whiteColor]
+// SubLabel选中开始文字
+#define SS_SelectBeginText @"入住"
 // SubLabel选中结束文字
-#define SS_SelectEndText @"结束"
+#define SS_SelectEndText @"离店"
 // 节日颜色
-#define SS_HolidayTextColor [UIColor purpleColor]
+#define SS_HolidayTextColor SS_UIColorWithHEXandAlpha(0x424242,1.0)
 // 周末颜色
-#define SS_WeekEndTextColor [UIColor redColor]
+#define SS_WeekEndTextColor SS_UIColorWithHEXandAlpha(0x424242,1.0)
 // 不可点击文字颜色
-#define SS_TouchUnableTextColor SS_UTILS_COLORRGB(150, 150, 150)
+#define SS_TouchUnableTextColor SS_UIColorWithHEXandAlpha(0x424242,1.0)
 // 周视图高度
 #define SS_WeekViewHeight 64
 // headerView线颜色
@@ -56,6 +61,7 @@
 // 分割线颜色
 #define SS_CalendarSeparatorLineColor     SS_UTILS_COLORRGB(219,219,219)
 
+#define LCColorMainContentColor     SS_UIColorWithHEXandAlpha(0x424242,1.0)    //主要内容(主标题、正文、内容描述)
 //入住、离店日期选中背景色
 #define SS_CalendarSelectedItemBackgroundColor      SS_UIColorWithHEXandAlpha(0xFC5D7B,1.0)
 #define SS_CalendarBetweenSelectedItemBackgroundColor    SS_UIColorWithHEXandAlpha(0xFC5D7B,0.5)    //提示内容高亮状态(收藏、删除等警示性内容)

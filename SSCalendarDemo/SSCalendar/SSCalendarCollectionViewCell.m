@@ -41,13 +41,19 @@
     _imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     [self.contentView addSubview:_imageView];
     
-    _dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, SS_Iphone6Scale(10), self.contentView.frame.size.width, self.frame.size.height / 2 - SS_Iphone6Scale(10))];
-    _dateLabel.textAlignment = NSTextAlignmentCenter;
-    _dateLabel.font = [UIFont systemFontOfSize:13.0f];
+    _dateLabel = [[UILabel alloc]initWithFrame:CGRectMake(5, 5, self.contentView.frame.size.width-5, 14)];
+    _dateLabel.textAlignment = NSTextAlignmentLeft;
+    _dateLabel.font = [UIFont systemFontOfSize:12.0f];
     [self.contentView addSubview:_dateLabel];
     
-    _subLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_dateLabel.frame), self.contentView.frame.size.width, _dateLabel.frame.size.height)];
-    _subLabel.textAlignment = NSTextAlignmentCenter;
+    _stateLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_dateLabel.frame), self.contentView.frame.size.width-5, 14)];
+    _stateLabel.textAlignment = NSTextAlignmentRight;
+    _stateLabel.textColor = [UIColor whiteColor];
+    _stateLabel.font = [UIFont boldSystemFontOfSize:12.f];
+    [self.contentView addSubview:_stateLabel];
+    
+    _subLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(_stateLabel.frame), self.contentView.frame.size.width-5, 12)];
+    _subLabel.textAlignment = NSTextAlignmentRight;
     _subLabel.font = [UIFont systemFontOfSize:10.0f];
     [self.contentView addSubview:_subLabel];
     
@@ -69,20 +75,32 @@
 
 - (void)setSelectedState:(SSCalendarItemState)selectedState{
     _selectedState = selectedState;
+    self.stateLabel.text = @"";
     switch (_selectedState) {
-        case SSCalendarItemStateSelected:{
+        case SSCalendarItemStateInSelected:{
             self.backgroundColor = SS_CalendarSelectedItemBackgroundColor;
+            self.stateLabel.text = @"入住";
+        }
+            break;
+        case SSCalendarItemStateLeaveSelected:
+        {
+            self.backgroundColor = SS_CalendarSelectedItemBackgroundColor;
+            self.subLabel.text = @"";
+            self.stateLabel.text = @"离店";
         }
             break;
         case SSCalendarViewStateBetweenSelected:
         {
             self.backgroundColor = SS_CalendarBetweenSelectedItemBackgroundColor;
+            self.stateLabel.text = @"";
         }
             break;
         case SSCalendarItemStateDefault:
         default:
         {
             self.backgroundColor = [UIColor whiteColor];
+            self.stateLabel.text = @"";
+            
         }
             break;
     }

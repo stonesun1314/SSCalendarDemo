@@ -29,6 +29,7 @@ typedef NS_ENUM(NSInteger, SSCalendarType)
 @property (nonatomic, assign) NSInteger day;
 @property (nonatomic, copy) NSString *chineseCalendar;  //农历
 @property (nonatomic, copy) NSString *holiday;          //节日
+@property (nonatomic, copy) NSString *price;            //价钱
 @property (nonatomic, assign) SSCalendarType type;
 @property (nonatomic, assign) NSInteger dateInterval;   //日期的时间戳
 @property (nonatomic, assign) NSInteger week;           //星期

@@ -23,7 +23,6 @@
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UICollectionViewFlowLayout *flowLayout;
-@property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) SSCalendarPopView *popView;
 
 @end
@@ -179,17 +178,17 @@
         // 开始日期
         if(calendarItem.dateInterval == _startDate)
         {
-            cell.selectedState = SSCalendarItemStateSelected;
+            cell.selectedState = SSCalendarItemStateInSelected;
             cell.dateLabel.textColor = SS_SelectTextColor;
-            cell.subLabel.text = SS_SelectBeginText;
+            //cell.subLabel.text = SS_SelectBeginText;
             
         }
         // 结束日期
         else if (calendarItem.dateInterval == _endDate)
         {
-            cell.selectedState = SSCalendarItemStateSelected;
+            cell.selectedState = SSCalendarItemStateLeaveSelected;
             cell.dateLabel.textColor = SS_SelectTextColor;
-            cell.subLabel.text = SS_SelectEndText;
+            cell.subLabel.text = @"";
         }
         
         // 开始和结束之间的日期
@@ -219,12 +218,17 @@
 
         }
         
+        if (_showPrice) {
+            if (calendarItem.price.length > 0) {
+                cell.subLabel.text = @"￥223";
+                cell.subLabel.textColor = SS_SelectStateColor;
+            }
+        }
+        
         if(!_afterTodayCanTouch)
         {
             if(calendarItem.type == SSCalendarNextType)
             {
-                cell.dateLabel.textColor = SS_TouchUnableTextColor;
-                cell.subLabel.textColor = SS_TouchUnableTextColor;
                 cell.userInteractionEnabled = NO;
             }
         }
@@ -232,8 +236,6 @@
         {
             if(calendarItem.type == SSCalendarLastType)
             {
-                cell.dateLabel.textColor = SS_TouchUnableTextColor;
-                cell.subLabel.textColor = SS_TouchUnableTextColor;
                 cell.userInteractionEnabled = NO;
             }
         }
